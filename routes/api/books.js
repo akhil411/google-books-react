@@ -1,10 +1,11 @@
 const router = require("express").Router();
 const booksController = require("../../controllers/booksController");
+const axios = require("axios");
 
 // Matches with "/api/books"
-router.route("/")
-  .get(booksController.findAll)
-  .post(booksController.create);
+// router.route("/")
+//   .get(booksController.findAll)
+//   .post(booksController.create);
 
 // Matches with "/api/books/:id"
 router
@@ -14,7 +15,12 @@ router
   .delete(booksController.remove);
 
 
-router.get("/books", (req, res) => {
+router.route("/")
+  // .get(booksController.findBooks)
+  .post(booksController.create);
+
+ 
+router.get("/", (req, res) => {
   axios
     .get("http://www.recipepuppy.com/api/", { params: req.query })
     .then(({ data: { results } }) => res.json(results))

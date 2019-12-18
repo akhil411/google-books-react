@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import DeleteBtn from "../components/DeleteBtn";
+import {SaveBtn, ViewSaveBtn} from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
@@ -11,8 +11,8 @@ class Books extends Component {
   state = {
     books: [],
     title: "",
-    author: "",
-    synopsis: "",
+    // author: "",
+    // synopsis: "",
   };
 
   // componentDidMount() {
@@ -27,9 +27,10 @@ class Books extends Component {
   //     .catch(err => console.log(err));
   // };
 
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
+  saveBook = data => {
+    console.log(data)
+    API.saveBook(data)
+      .then(res => console.log("success"))
       .catch(err => console.log(err));
   };
 
@@ -43,9 +44,9 @@ class Books extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.title) {
-      API.searchBook({
-        title: this.state.title,
-      })
+      API.searchBook(
+        this.state.title
+      )
         .then(res => {
           console.log(res.data);
           this.setState({ books: res.data });
@@ -61,6 +62,9 @@ class Books extends Component {
           <Col size="md-12">
             <Jumbotron>
               <h1>What Books Should I Read?</h1>
+              <Link to={"/books"}>
+              <ViewSaveBtn />
+              </Link>
             </Jumbotron>
             <form>
               <Input
@@ -79,7 +83,7 @@ class Books extends Component {
           </Col>
           <Col size="md-12 sm-12">
             <Jumbotron>
-              <h1>Books On My List</h1>
+              <h1>Search Results</h1>
             </Jumbotron>
             {this.state.books.length ? (
               <List>
@@ -87,10 +91,10 @@ class Books extends Component {
                   <ListItem key={book._id}>
                     <Link to={"/books/" + book._id}>
                       <strong>
-                        {book.title} by {book.ingredients}
+                        {book.title}
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
+                    <SaveBtn onClick={() => this.saveBook({title:book.title})} />
                   </ListItem>
                 ))}
               </List>
