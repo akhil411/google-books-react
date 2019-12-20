@@ -13,8 +13,16 @@ export function SaveBtn(props) {
 
 export function ViewSaveBtn(props) {
   return (
-    <button className="delete-btn" {...props} role="button" tabIndex="0">
+    <button className="delete-btn save-btn" {...props} role="button" tabIndex="0">
       View Saved Books
+    </button>
+  );
+}
+
+export function DeleteBtn(props) {
+  return (
+    <button className="delete-btn" {...props} role="button" tabIndex="0">
+     Delete Book
     </button>
   );
 }

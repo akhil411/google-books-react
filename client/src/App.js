@@ -19,7 +19,7 @@ function App() {
           <Route path="/books" exact>
             <Books />
           </Route>
-          <Route path="/books/:id"component={Detail} />
+          <Route path="/detail"component={Detail} />
           <Route path="*">
             <NoMatch />
           </Route>

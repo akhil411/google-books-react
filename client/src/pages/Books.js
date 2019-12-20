@@ -62,7 +62,7 @@ class Books extends Component {
           <Col size="md-12">
             <Jumbotron>
               <h1>What Books Should I Read?</h1>
-              <Link to={"/books"}>
+              <Link to={"/detail"}>
               <ViewSaveBtn />
               </Link>
             </Jumbotron>
