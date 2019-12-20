@@ -7,6 +7,7 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 
+
 class Books extends Component {
   state = {
     books: [],
@@ -48,7 +49,6 @@ class Books extends Component {
         this.state.title
       )
         .then(res => {
-          console.log(res.data);
           this.setState({ books: res.data });
         })
         .catch(err => console.log(err));
@@ -91,10 +91,19 @@ class Books extends Component {
                   <ListItem key={book._id}>
                     <Link to={"/books/" + book._id}>
                       <strong>
-                        {book.title}
+                        {book.volumeInfo.title}
+                        <br></br>
+                        Author: {book.volumeInfo.authors[0]}
+                        <br></br>
+                        Publisher: {book.volumeInfo.publisher}
+                        <br></br>
+                        Description: {book.volumeInfo.description}
+                        <br></br>
+                        Published Date: {book.volumeInfo.publishedDate}
                       </strong>
                     </Link>
-                    <SaveBtn onClick={() => this.saveBook({title:book.title})} />
+                    <SaveBtn onClick={() => this.saveBook({title:book.volumeInfo.title, author:book.volumeInfo.authors[0], publisher:book.volumeInfo.publisher, 
+                      description:book.volumeInfo.description, publishedDate:book.volumeInfo.publishedDate})} />
                   </ListItem>
                 ))}
               </List>

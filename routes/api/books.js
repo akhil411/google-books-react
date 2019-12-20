@@ -22,8 +22,8 @@ router.route("/")
  
 router.get("/", (req, res) => {
   axios
-    .get("http://www.recipepuppy.com/api/", { params: req.query })
-    .then(({ data: { results } }) => res.json(results))
+    .get("https://www.googleapis.com/books/v1/volumes", { params: req.query })
+    .then(({ data: { items } }) => res.json(items))
     .catch(err => res.status(422).json(err));
 });
 

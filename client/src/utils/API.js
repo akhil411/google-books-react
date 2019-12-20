@@ -19,6 +19,7 @@ export default {
     return axios.post("/api/books", bookData);
   },
   searchBook: function(query) {
+    console.log(query)
     return axios.get("/api/books", { params: { q: query } });
   }
 };

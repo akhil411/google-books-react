@@ -55,6 +55,12 @@ class Detail extends Component {
                   <ListItem key={book._id}>
                       <strong>
                         {book.title}
+                        <br></br>
+                        Author: {book.author}
+                        <br></br>
+                        Publisher: {book.publisher}
+                        <br></br>
+                        Published Date: {book.publishedDate}
                       </strong>
                       <DeleteBtn onClick={() => this.deleteBook(book._id)} />
                   </ListItem>
